@@ -3,75 +3,92 @@ import { CAFE_NAME, CAFE_TAGLINE, CAFE_DESCRIPTION } from "@/lib/constants";
 
 export default function Hero() {
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0">
+    <section
+      id="home"
+      aria-label="Welcome section"
+      className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden"
+    >
+      {/* Background Image with Depth Gradient */}
+      <div className="absolute inset-0 z-0">
         <Image
-          src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1920&h=1080&fit=crop&q=80"
-          alt="Sample café ambience — demo image from Unsplash"
+          src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=1920&h=1080&fit=crop&q=85"
+          alt="Atmospheric coffee shop interior with warm amber lighting in Anand"
           fill
-          className="object-cover"
           priority
           sizes="100vw"
+          className="object-cover object-center scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+        {/* Layered high-contrast dark vignette overlay for typography legibility */}
+        <div className="absolute inset-0 bg-espresso/75 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-t from-espresso via-black/45 to-espresso/80" />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
-        <p
-          className="text-accent-light text-sm md:text-base tracking-[0.3em] uppercase mb-4 animate-fade-in"
-          style={{ fontFamily: "var(--font-lato), sans-serif" }}
-        >
-          Welcome to
-        </p>
+      {/* Main Content */}
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
+        {/* Opening Hours & Location Chip */}
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-caramel-light text-xs sm:text-sm font-medium mb-6">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" aria-hidden="true" />
+          <span>Open Daily • 8:00 AM – 10:00 PM • V.V. Nagar Circle, Anand</span>
+        </div>
+
+        {/* Café Name Heading */}
         <h1
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 leading-tight"
-          style={{ fontFamily: "var(--font-playfair), serif" }}
+          className="text-4xl sm:text-6xl md:text-7xl font-bold text-white tracking-tight leading-[1.1] mb-5 drop-shadow-md"
+          style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
         >
           {CAFE_NAME}
         </h1>
+
+        {/* Tagline */}
         <p
-          className="text-xl sm:text-2xl md:text-3xl text-accent-light italic mb-6"
-          style={{ fontFamily: "var(--font-playfair), serif" }}
+          className="text-xl sm:text-2xl md:text-3xl font-light text-caramel-light italic tracking-wide mb-6"
+          style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
         >
-          {CAFE_TAGLINE}
+          &ldquo;{CAFE_TAGLINE}&rdquo;
         </p>
+
+        {/* Description */}
         <p
-          className="text-white/80 text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed"
+          className="max-w-2xl mx-auto text-base sm:text-lg text-white/90 leading-relaxed mb-10 font-normal"
           style={{ fontFamily: "var(--font-lato), sans-serif" }}
         >
           {CAFE_DESCRIPTION}
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+
+        {/* CTAs */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
             href="#menu"
-            className="inline-flex items-center justify-center px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary-dark transition-all duration-300 hover:scale-105 hover:shadow-xl text-base tracking-wide"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-caramel hover:bg-caramel/90 text-espresso font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-200 text-base tracking-wide hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
             style={{ fontFamily: "var(--font-lato), sans-serif" }}
           >
-            View Menu
+            <span>Explore Our Menu</span>
+            <span aria-hidden="true">→</span>
           </a>
           <a
             href="#contact"
-            className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-primary transition-all duration-300 hover:scale-105 text-base tracking-wide"
+            className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-transparent hover:bg-white/15 text-white font-medium rounded-full border border-white/40 hover:border-white transition-all duration-200 text-base tracking-wide focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
             style={{ fontFamily: "var(--font-lato), sans-serif" }}
           >
-            Contact Us
+            Contact &amp; Location
           </a>
         </div>
-      </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <svg
-          className="w-6 h-6 text-white/60"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-        </svg>
+        {/* Subtle Feature Pills */}
+        <div className="mt-14 pt-8 border-t border-white/15 flex items-center justify-center gap-6 sm:gap-12 flex-wrap text-white/80 text-xs sm:text-sm">
+          <div className="flex items-center gap-2">
+            <span className="text-caramel">☕</span>
+            <span>Micro-Roasted Beans</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-caramel">🌱</span>
+            <span>100% Pure Vegetarian</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-caramel">⚡</span>
+            <span>High-Speed Study Wi-Fi</span>
+          </div>
+        </div>
       </div>
     </section>
   );

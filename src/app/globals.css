@@ -1,15 +1,20 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-primary: #8B4513;
-  --color-primary-dark: #6B3410;
-  --color-primary-light: #A0522D;
-  --color-accent: #D4A574;
-  --color-accent-light: #E8D5B7;
-  --color-warm-bg: #FDF8F0;
-  --color-warm-bg-dark: #F5E6D3;
-  --color-text-dark: #2D1B0E;
-  --color-text-muted: #6B5B4E;
+  --color-primary: #7C3A16;
+  --color-primary-dark: #4A1E08;
+  --color-primary-light: #9C4B1E;
+  --color-espresso: #24140D;
+  --color-caramel: #C07D46;
+  --color-caramel-light: #E8CAAD;
+  --color-terracotta: #B85025;
+  --color-accent: #C07D46;
+  --color-accent-light: #F0E3D3;
+  --color-warm-bg: #FAF6EF;
+  --color-warm-bg-alt: #F3EAE0;
+  --color-text-dark: #22150E;
+  --color-text-muted: #69574D;
+  --color-border-warm: #E7D8C7;
   --color-whatsapp: #25D366;
   --color-whatsapp-dark: #128C7E;
   --font-sans: var(--font-playfair);
@@ -18,29 +23,41 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
 }
 
 body {
   background-color: var(--color-warm-bg);
   color: var(--color-text-dark);
-  font-family: var(--font-body), system-ui, sans-serif;
+  font-family: var(--font-body), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-sans), serif;
+  font-family: var(--font-sans), Georgia, serif;
 }
 
-/* Custom scrollbar */
+/* Custom delicate scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
 }
 ::-webkit-scrollbar-track {
   background: var(--color-warm-bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-accent);
+  background: var(--color-caramel);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-primary);
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

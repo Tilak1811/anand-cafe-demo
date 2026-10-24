@@ -1,117 +1,130 @@
 import {
   CAFE_NAME,
+  CAFE_TAGLINE,
   NAV_LINKS,
   PHONE_NUMBER,
   EMAIL,
   ADDRESS,
+  DEVELOPER_NAME,
+  DEVELOPER_PHONE_DISPLAY,
 } from "@/lib/constants";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-text-dark text-white">
+    <footer
+      aria-label="Site footer"
+      className="bg-espresso text-white border-t border-white/10 overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-          {/* Brand */}
-          <div className="lg:col-span-2">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="text-2xl">☕</span>
-              <span
-                className="text-2xl font-bold text-accent-light"
-                style={{ fontFamily: "var(--font-playfair), serif" }}
-              >
-                {CAFE_NAME}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12">
+          {/* Brand Info (5 cols) */}
+          <div className="lg:col-span-5 space-y-4">
+            <div className="flex items-center gap-3">
+              <span className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-xl" role="img" aria-label="Coffee cup">
+                ☕
               </span>
+              <div>
+                <span
+                  className="text-2xl font-bold text-white tracking-tight block"
+                  style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
+                >
+                  {CAFE_NAME}
+                </span>
+                <span className="text-xs text-caramel-light font-medium tracking-wider uppercase">
+                  Anand • Vallabh Vidyanagar
+                </span>
+              </div>
             </div>
+
             <p
-              className="text-white/60 text-sm leading-relaxed max-w-md mb-4"
+              className="text-white/70 text-sm leading-relaxed max-w-sm"
               style={{ fontFamily: "var(--font-lato), sans-serif" }}
             >
-              A warm and welcoming café in the heart of Anand, Gujarat. This
-              website is a demonstration project with fictional content, created
-              to showcase modern café web design.
+              {CAFE_TAGLINE}. A serene gathering place for students, faculty, and coffee lovers in Anand, Gujarat.
             </p>
-            <p
-              className="text-accent/80 text-xs italic border-l-2 border-accent/40 pl-3"
+
+            <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 text-xs text-caramel-light/90">
+              <p className="font-semibold mb-0.5">🛈 Portfolio Demonstration:</p>
+              <p className="text-white/60">
+                Created to showcase modern web capabilities for local food and hospitality businesses.
+              </p>
+            </div>
+          </div>
+
+          {/* Quick Links (3 cols) */}
+          <div className="lg:col-span-3">
+            <h4
+              className="text-sm font-bold uppercase tracking-wider text-caramel mb-4"
               style={{ fontFamily: "var(--font-lato), sans-serif" }}
             >
-              🛈 DEMO PROJECT — All business information is fictional.
-            </p>
+              Explore
+            </h4>
+            <ul className="space-y-2.5">
+              {NAV_LINKS.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className="text-white/70 hover:text-white transition-colors text-sm focus:outline-none focus-visible:ring-1 focus-visible:ring-white rounded py-0.5 inline-block"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          {/* Quick Links */}
-          <div>
+          {/* Fictional Café Contact (4 cols) */}
+          <div className="lg:col-span-4 space-y-3">
             <h4
-              className="text-lg font-bold text-accent-light mb-4"
-              style={{ fontFamily: "var(--font-playfair), serif" }}
+              className="text-sm font-bold uppercase tracking-wider text-caramel mb-4"
+              style={{ fontFamily: "var(--font-lato), sans-serif" }}
             >
-              Quick Links
+              Demo Café Location
             </h4>
-            <nav aria-label="Footer navigation">
-              <ul className="space-y-2">
-                {NAV_LINKS.map((link) => (
-                  <li key={link.href}>
-                    <a
-                      href={link.href}
-                      className="text-white/60 hover:text-accent transition-colors text-sm"
-                      style={{ fontFamily: "var(--font-lato), sans-serif" }}
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>
-
-          {/* Contact Info */}
-          <div>
-            <h4
-              className="text-lg font-bold text-accent-light mb-4"
-              style={{ fontFamily: "var(--font-playfair), serif" }}
-            >
-              Contact (Demo)
-            </h4>
-            <ul className="space-y-3 text-white/60 text-sm" style={{ fontFamily: "var(--font-lato), sans-serif" }}>
-              <li className="flex items-start gap-2">
-                <svg className="w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                {ADDRESS.full}
+            <ul className="space-y-2.5 text-white/70 text-sm">
+              <li className="flex items-start gap-2.5">
+                <span className="text-caramel shrink-0 mt-0.5">📍</span>
+                <span>{ADDRESS.full}</span>
               </li>
-              <li className="flex items-center gap-2">
-                <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-                {PHONE_NUMBER}
+              <li className="flex items-center gap-2.5">
+                <span className="text-caramel shrink-0">📞</span>
+                <span>{PHONE_NUMBER} (Demo)</span>
               </li>
-              <li className="flex items-center gap-2">
-                <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                {EMAIL}
+              <li className="flex items-center gap-2.5">
+                <span className="text-caramel shrink-0">✉️</span>
+                <span>{EMAIL}</span>
               </li>
             </ul>
+
+            {/* Developer Discreet CTA */}
+            <div className="pt-4 mt-4 border-t border-white/10">
+              <a
+                href="#portfolio-pitch"
+                className="text-xs text-caramel-light hover:text-white transition-colors flex items-center gap-1.5 font-medium"
+              >
+                <span>Need a website like this for your shop in Anand?</span>
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom Bar */}
-      <div className="border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p
-            className="text-white/40 text-sm text-center"
-            style={{ fontFamily: "var(--font-lato), sans-serif" }}
-          >
-            © {currentYear} {CAFE_NAME}. Demo Project — All Rights Reserved.
-          </p>
-          <p
-            className="text-white/30 text-xs text-center"
-            style={{ fontFamily: "var(--font-lato), sans-serif" }}
-          >
-            Designed as a portfolio demonstration. Not a real business.
+      {/* Sub-Footer Bar */}
+      <div className="border-t border-white/10 bg-black/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/50 text-center sm:text-left">
+          <p>© {currentYear} {CAFE_NAME}. Fictional Demo Website.</p>
+          <p>
+            Designed &amp; Developed by{" "}
+            <a
+              href="#portfolio-pitch"
+              className="text-caramel-light hover:underline font-semibold"
+            >
+              {DEVELOPER_NAME}
+            </a>{" "}
+            • WhatsApp: {DEVELOPER_PHONE_DISPLAY}
           </p>
         </div>
       </div>

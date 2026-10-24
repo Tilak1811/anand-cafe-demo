@@ -4,180 +4,168 @@ import {
   ADDRESS,
   OPENING_HOURS,
   GOOGLE_MAPS_URL,
+  WHATSAPP_NUMBER,
 } from "@/lib/constants";
 
 export default function Contact() {
+  const cafeWhatsappMessage = encodeURIComponent(
+    "Hello! I am viewing your Anand Café demo website and would like to ask a sample question."
+  );
+  const cafeWhatsappUrl = `https://wa.me/${WHATSAPP_NUMBER.replace(/[^\d]/g, "")}?text=${cafeWhatsappMessage}`;
+
   return (
-    <section id="contact" className="py-20 md:py-28 bg-white">
+    <section
+      id="contact"
+      aria-label="Café contact details and location"
+      className="py-20 md:py-28 bg-warm-bg scroll-mt-20"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <p
-            className="text-primary text-sm tracking-[0.2em] uppercase mb-3 font-semibold"
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          <span
+            className="inline-block text-primary text-xs sm:text-sm tracking-[0.25em] uppercase font-bold mb-3"
             style={{ fontFamily: "var(--font-lato), sans-serif" }}
           >
-            Get In Touch
-          </p>
+            Visit Our Sanctuary
+          </span>
           <h2
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-text-dark mb-4"
-            style={{ fontFamily: "var(--font-playfair), serif" }}
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-espresso mb-4"
+            style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
           >
-            Visit Us Today
+            Find Us in Anand
           </h2>
           <p
-            className="text-text-muted max-w-2xl mx-auto text-base md:text-lg"
+            className="text-text-muted text-base sm:text-lg leading-relaxed"
             style={{ fontFamily: "var(--font-lato), sans-serif" }}
           >
-            We would love to hear from you. Drop by for a coffee or reach out to
-            us.
+            Centrally situated near V.V. Nagar Circle, welcoming you every day of the week for coffee, chai, and quiet moments.
           </p>
-          <p
-            className="text-xs text-text-muted/70 italic mt-2"
-            style={{ fontFamily: "var(--font-lato), sans-serif" }}
-          >
-            ⓘ All contact information below is fictional and for demonstration
-            purposes only.
+
+          <p className="text-[11px] text-text-muted/70 italic mt-2">
+            ⓘ Fictional Demo Location: Address, telephone numbers, and hours below are mock details for presentation purposes.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Phone & Email */}
-          <div className="bg-warm-bg rounded-2xl p-8 text-center hover:shadow-lg transition-shadow duration-300">
-            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg
-                className="w-8 h-8 text-primary"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
+        {/* 3-Column Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-12">
+          {/* Card 1: Direct Contact & Action Buttons */}
+          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-border-warm shadow-xs flex flex-col justify-between">
+            <div>
+              <div className="w-12 h-12 rounded-xl bg-warm-bg text-primary flex items-center justify-center text-xl mb-5">
+                📞
+              </div>
+              <h3
+                className="text-xl font-bold text-espresso mb-2"
+                style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.5}
-                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                />
-              </svg>
+                Call &amp; WhatsApp
+              </h3>
+              <p className="text-sm text-text-muted mb-4">
+                Inquire about table reservations, group bookings, or seasonal specials.
+              </p>
+
+              <div className="space-y-1.5 text-sm text-espresso font-medium mb-6">
+                <p>Phone: {PHONE_NUMBER}</p>
+                <p>Email: {EMAIL}</p>
+              </div>
             </div>
-            <h3
-              className="text-xl font-bold text-text-dark mb-3"
-              style={{ fontFamily: "var(--font-playfair), serif" }}
-            >
-              Call or Email
-            </h3>
-            <p
-              className="text-text-muted mb-1"
-              style={{ fontFamily: "var(--font-lato), sans-serif" }}
-            >
-              <span className="font-semibold">Phone:</span> {PHONE_NUMBER}
-            </p>
-            <p
-              className="text-text-muted text-sm"
-              style={{ fontFamily: "var(--font-lato), sans-serif" }}
-            >
-              <span className="font-semibold">Email:</span> {EMAIL}
-            </p>
-            <p className="text-[10px] text-text-muted/50 mt-2 italic">
-              DEMO PLACEHOLDER
-            </p>
+
+            {/* Direct Action Buttons */}
+            <div className="space-y-2.5 pt-4 border-t border-border-warm">
+              <a
+                href={`tel:${PHONE_NUMBER.replace(/[^\d+]/g, "")}`}
+                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-espresso text-espresso hover:bg-espresso hover:text-white font-semibold text-xs uppercase tracking-wider transition-colors"
+              >
+                <span>Call Sample Number</span>
+              </a>
+              <a
+                href={cafeWhatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-whatsapp hover:bg-whatsapp-dark text-white font-semibold text-xs uppercase tracking-wider transition-colors shadow-xs"
+              >
+                <span>WhatsApp (Demo)</span>
+              </a>
+              <span className="text-[10px] text-center text-text-muted/60 block italic">
+                Demo Placeholder: Not an active business line
+              </span>
+            </div>
           </div>
 
-          {/* Address */}
-          <div className="bg-warm-bg rounded-2xl p-8 text-center hover:shadow-lg transition-shadow duration-300">
-            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg
-                className="w-8 h-8 text-primary"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
+          {/* Card 2: Physical Address & Directions */}
+          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-border-warm shadow-xs flex flex-col justify-between">
+            <div>
+              <div className="w-12 h-12 rounded-xl bg-warm-bg text-primary flex items-center justify-center text-xl mb-5">
+                📍
+              </div>
+              <h3
+                className="text-xl font-bold text-espresso mb-2"
+                style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.5}
-                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.5}
-                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                />
-              </svg>
+                Café Location
+              </h3>
+              <p className="text-sm text-text-muted mb-4">
+                Conveniently located in the educational and cultural corridor of Anand.
+              </p>
+
+              <address className="not-italic text-sm text-espresso leading-relaxed space-y-1 mb-6">
+                <p className="font-semibold">{ADDRESS.line1}</p>
+                <p>{ADDRESS.line2}</p>
+                <p>{ADDRESS.city}, {ADDRESS.state} {ADDRESS.pincode}</p>
+              </address>
             </div>
-            <h3
-              className="text-xl font-bold text-text-dark mb-3"
-              style={{ fontFamily: "var(--font-playfair), serif" }}
-            >
-              Our Address
-            </h3>
-            <p
-              className="text-text-muted leading-relaxed"
-              style={{ fontFamily: "var(--font-lato), sans-serif" }}
-            >
-              {ADDRESS.line1}
-              <br />
-              {ADDRESS.line2}
-              <br />
-              {ADDRESS.city}, {ADDRESS.state} {ADDRESS.pincode}
-            </p>
-            <a
-              href={GOOGLE_MAPS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-primary font-semibold text-sm mt-4 hover:text-primary-dark transition-colors"
-              style={{ fontFamily: "var(--font-lato), sans-serif" }}
-            >
-              Get Directions (Demo)
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
-            </a>
-            <p className="text-[10px] text-text-muted/50 mt-2 italic">
-              DEMO PLACEHOLDER ADDRESS
-            </p>
+
+            <div className="pt-4 border-t border-border-warm">
+              <a
+                href={GOOGLE_MAPS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-espresso hover:bg-primary text-white font-semibold text-xs uppercase tracking-wider transition-colors shadow-xs"
+              >
+                <span>Get Directions (Google Maps)</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+              <span className="text-[10px] text-center text-text-muted/60 block italic mt-2">
+                Coordinates: Near V.V. Nagar Circle, Anand
+              </span>
+            </div>
           </div>
 
-          {/* Opening Hours */}
-          <div className="bg-warm-bg rounded-2xl p-8 text-center hover:shadow-lg transition-shadow duration-300 md:col-span-2 lg:col-span-1">
-            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg
-                className="w-8 h-8 text-primary"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
+          {/* Card 3: Opening Hours */}
+          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-border-warm shadow-xs flex flex-col justify-between">
+            <div>
+              <div className="w-12 h-12 rounded-xl bg-warm-bg text-primary flex items-center justify-center text-xl mb-5">
+                ⏱️
+              </div>
+              <h3
+                className="text-xl font-bold text-espresso mb-2"
+                style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.5}
-                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
+                Opening Hours
+              </h3>
+              <p className="text-sm text-text-muted mb-5">
+                Serving freshly brewed beverages and meals throughout the day and evening.
+              </p>
+
+              <div className="space-y-3">
+                {OPENING_HOURS.map((slot) => (
+                  <div
+                    key={slot.day}
+                    className="flex items-center justify-between py-2 border-b border-border-warm/50 text-xs sm:text-sm"
+                  >
+                    <span className="font-medium text-espresso">{slot.day}</span>
+                    <span className="text-text-muted font-mono">{slot.hours}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-            <h3
-              className="text-xl font-bold text-text-dark mb-3"
-              style={{ fontFamily: "var(--font-playfair), serif" }}
-            >
-              Opening Hours
-            </h3>
-            <div className="space-y-2">
-              {OPENING_HOURS.map((schedule) => (
-                <div
-                  key={schedule.day}
-                  className="flex justify-between items-center text-text-muted text-sm"
-                  style={{ fontFamily: "var(--font-lato), sans-serif" }}
-                >
-                  <span className="font-medium">{schedule.day}</span>
-                  <span>{schedule.hours}</span>
-                </div>
-              ))}
+
+            <div className="pt-4 border-t border-border-warm">
+              <div className="inline-flex items-center gap-2 text-xs text-emerald-800 bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-lg w-full justify-center">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="font-semibold">Open for Dine-in &amp; Takeaway (Demo)</span>
+              </div>
             </div>
-            <p className="text-[10px] text-text-muted/50 mt-4 italic">
-              SAMPLE HOURS
-            </p>
           </div>
         </div>
       </div>

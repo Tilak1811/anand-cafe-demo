@@ -1,8 +1,8 @@
 # Anand Cafe Demo ☕
 
-A premium, modern, mobile-responsive café website demo designed for client pitches to local café and restaurant owners in **Anand, Gujarat, India**.
+A premium, modern, interactive café website demo designed for client pitches to local café, restaurant, and business owners in **Anand and Vallabh Vidyanagar, Gujarat, India**.
 
-> **Note**: This is a portfolio demonstration website. All business details, prices, contact information, and imagery are fictional samples for demonstration purposes.
+> **Note**: This is a portfolio demonstration website. All business details, prices, contact information, and customer reviews are fictional samples for demonstration purposes.
 
 ---
 
@@ -26,10 +26,11 @@ Then open [http://localhost:3000](http://localhost:3000) in your browser.
 
 - **Framework**: [Next.js 16](https://nextjs.org) with App Router
 - **Language**: [TypeScript](https://www.typescriptlang.org)
-- **Styling**: [Tailwind CSS v4](https://tailwindcss.com) with custom warm theme
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com) with custom warm espresso & caramel theme
 - **Typography**: Google Fonts (`Playfair Display` for serif headings & `Lato` for body text)
-- **Icons**: Accessible inline SVGs (no heavy icon libraries needed)
+- **Icons**: Accessible inline SVGs and Unicode icons (zero heavy icon dependencies)
 - **Images**: Next.js optimized `<Image />` with Unsplash imagery
+- **Deployment**: [Vercel](https://vercel.com)
 
 ---
 
@@ -39,22 +40,25 @@ Then open [http://localhost:3000](http://localhost:3000) in your browser.
 tulsi-cafe/
 ├── src/
 │   ├── app/
-│   │   ├── globals.css         # Tailwind v4 theme, font variables & styling
-│   │   ├── layout.tsx          # Root layout with fonts & SEO metadata
-│   │   └── page.tsx            # Home page assembling all sections
+│   │   ├── globals.css           # Tailwind v4 theme, font variables & responsive styling
+│   │   ├── layout.tsx            # Root layout with fonts & SEO metadata
+│   │   └── page.tsx              # Home page assembling all sections
 │   ├── components/
-│   │   ├── DemoBanner.tsx      # Top demo disclaimer bar
-│   │   ├── Navbar.tsx          # Responsive navbar with mobile hamburger menu
-│   │   ├── Hero.tsx            # Hero section with call-to-actions
-│   │   ├── Menu.tsx            # 6 featured items with sample pricing
-│   │   ├── About.tsx           # Story section with imagery & sample stats
-│   │   ├── Gallery.tsx         # 6-item responsive image grid with hover effects
-│   │   ├── Contact.tsx         # Address (Anand, Gujarat), hours & directions
-│   │   ├── Footer.tsx          # Branding, quick links, copyright & demo note
-│   │   └── WhatsAppButton.tsx  # Floating quick-chat WhatsApp button
+│   │   ├── DemoBanner.tsx        # Top demo disclaimer bar
+│   │   ├── Navbar.tsx            # Sticky navbar with mobile hamburger & dual CTAs
+│   │   ├── Hero.tsx              # Hero section with high-contrast ambience & hours chip
+│   │   ├── Menu.tsx              # Interactive category tabs (Coffee, Tea, Snacks, Desserts)
+│   │   ├── SignatureSpecial.tsx  # Editorial spotlight on Kesar Pista Iced Latte
+│   │   ├── About.tsx             # Editorial story & brand pillars (V.V. Nagar)
+│   │   ├── Gallery.tsx           # Asymmetric grid with interactive Lightbox modal
+│   │   ├── Testimonials.tsx      # Transparent customer experience showcase (demo)
+│   │   ├── Contact.tsx           # Direct call, WhatsApp, directions & opening hours
+│   │   ├── PitchSection.tsx      # "Want a Website Like This?" with 4 business services
+│   │   ├── Footer.tsx            # Brand info, quick links, and developer credit
+│   │   └── WhatsAppButton.tsx    # Floating quick-chat WhatsApp demo button
 │   └── lib/
-│       └── constants.ts        # Central configuration file for all café data
-├── next.config.ts              # Remote image domains & Turbopack config
+│       └── constants.ts          # Central configuration file for all café & developer data
+├── next.config.ts                # Remote image domains & Turbopack config
 ├── package.json
 └── tsconfig.json
 ```
@@ -65,12 +69,30 @@ tulsi-cafe/
 
 All text, prices, links, and contact details are centralized in **[`src/lib/constants.ts`](./src/lib/constants.ts)**:
 
-- **Café Name & Tagline**: Change `CAFE_NAME`, `CAFE_TAGLINE`, and `CAFE_DESCRIPTION`
-- **WhatsApp Button**: Update `WHATSAPP_NUMBER` with the client's business phone number
-- **Contact Details**: Update `PHONE_NUMBER`, `EMAIL`, and `ADDRESS` (pre-configured for Anand, Gujarat)
-- **Menu Items**: Add, edit, or adjust items in `MENU_ITEMS`
-- **Gallery**: Swap images in `GALLERY_IMAGES`
-- **Google Maps**: Update `GOOGLE_MAPS_URL` with the client's actual Google Maps link
+- **Café Name & Tagline**: Change `CAFE_NAME`, `CAFE_TAGLINE`, `CAFE_SUBTITLE`, and `CAFE_DESCRIPTION`
+- **Menu Items & Categories**: Add, edit, or adjust items in `MENU_ITEMS` (includes `category`, `price`, `isVeg`, `badge`, and `image`)
+- **Signature Special**: Customize `SIGNATURE_SPECIAL` with your client's hero dish or drink
+- **Gallery**: Update images in `GALLERY_IMAGES`
+- **Reviews**: Update sample testimonials in `TESTIMONIALS`
+- **Café Contact**: Update `PHONE_NUMBER`, `EMAIL`, `ADDRESS`, and `OPENING_HOURS`
+- **Developer Services**: Update `DEVELOPER_WHATSAPP_NUMBER` and `DEVELOPER_SERVICES`
+
+---
+
+## 🚢 Deploying to Vercel
+
+When you are ready to update the live Vercel deployment:
+
+```bash
+# Stage and commit your changes
+git add .
+git commit -m "Upgrade café demo with interactive menu, signature special, gallery lightbox, and testimonials"
+
+# Push to GitHub
+git push origin main
+```
+
+Vercel will automatically detect the commit on `main` and trigger a production deployment.
 
 ---
 

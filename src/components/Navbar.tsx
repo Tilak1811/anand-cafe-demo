@@ -11,111 +11,158 @@ export default function Navbar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Close mobile menu on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isOpen) {
+        setIsOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
 
   const handleLinkClick = () => {
     setIsOpen(false);
   };
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <header
+      className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-lg"
-          : "bg-transparent"
+          ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-border-warm/60"
+          : "bg-white/80 backdrop-blur-sm border-b border-border-warm/30"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
+        <div className="flex items-center justify-between h-18 md:h-20">
+          {/* Logo & Brand */}
           <a
             href="#home"
-            className="flex items-center gap-2 group"
+            className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg p-1"
             aria-label={`${CAFE_NAME} - Home`}
           >
-            <span className="text-2xl" role="img" aria-label="Coffee cup">
+            <span
+              className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-xl text-primary group-hover:scale-105 transition-transform duration-200"
+              role="img"
+              aria-label="Coffee cup icon"
+            >
               ☕
             </span>
-            <span
-              className={`text-xl md:text-2xl font-bold transition-colors duration-300 ${
-                isScrolled ? "text-primary" : "text-white"
-              }`}
-              style={{ fontFamily: "var(--font-playfair), serif" }}
-            >
-              {CAFE_NAME}
-            </span>
+            <div className="flex flex-col">
+              <span
+                className="text-lg sm:text-xl font-bold tracking-tight text-espresso transition-colors duration-200"
+                style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
+              >
+                {CAFE_NAME}
+              </span>
+              <span className="text-[11px] text-text-muted tracking-wider uppercase font-medium">
+                Anand • V.V. Nagar
+              </span>
+            </div>
           </a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          {/* Desktop Navigation Links */}
+          <nav
+            aria-label="Primary navigation"
+            className="hidden lg:flex items-center gap-7"
+          >
             {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-medium tracking-wide uppercase transition-colors duration-300 hover:text-accent relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-accent after:transition-all after:duration-300 hover:after:w-full ${
-                  isScrolled ? "text-text-dark" : "text-white"
-                }`}
+                className="text-sm font-medium tracking-wide text-text-dark/90 hover:text-primary transition-colors duration-200 relative py-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
                 style={{ fontFamily: "var(--font-lato), sans-serif" }}
               >
                 {link.label}
               </a>
             ))}
+          </nav>
+
+          {/* Right Header Actions */}
+          <div className="hidden sm:flex items-center gap-3">
+            <a
+              href="#contact"
+              className="text-xs font-semibold uppercase tracking-wider px-4 py-2.5 rounded-full border border-caramel text-espresso hover:bg-caramel hover:text-white transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            >
+              Visit Us
+            </a>
+            <a
+              href="#portfolio-pitch"
+              className="text-xs font-semibold uppercase tracking-wider px-4 py-2.5 rounded-full bg-primary text-white hover:bg-primary-dark transition-all duration-200 shadow-sm hover:shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            >
+              Build Your Website
+            </a>
           </div>
 
           {/* Mobile Hamburger Button */}
           <button
-            className="md:hidden flex flex-col gap-1.5 p-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
+            type="button"
+            className="lg:hidden flex flex-col justify-center items-center w-10 h-10 rounded-lg text-espresso focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             onClick={() => setIsOpen(!isOpen)}
-            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-label={isOpen ? "Close menu" : "Open navigation menu"}
             aria-expanded={isOpen}
+            aria-controls="mobile-navigation"
           >
             <span
-              className={`block w-6 h-0.5 transition-all duration-300 ${
-                isScrolled ? "bg-text-dark" : "bg-white"
-              } ${
-                isOpen ? "rotate-45 translate-y-2" : ""
+              className={`block w-6 h-0.5 bg-espresso transition-all duration-300 ${
+                isOpen ? "rotate-45 translate-y-1.5" : "-translate-y-1"
               }`}
             />
             <span
-              className={`block w-6 h-0.5 transition-all duration-300 ${
-                isScrolled ? "bg-text-dark" : "bg-white"
-              } ${
-                isOpen ? "opacity-0" : ""
+              className={`block w-6 h-0.5 bg-espresso transition-all duration-300 ${
+                isOpen ? "opacity-0" : "my-0.5"
               }`}
             />
             <span
-              className={`block w-6 h-0.5 transition-all duration-300 ${
-                isScrolled ? "bg-text-dark" : "bg-white"
-              } ${
-                isOpen ? "-rotate-45 -translate-y-2" : ""
+              className={`block w-6 h-0.5 bg-espresso transition-all duration-300 ${
+                isOpen ? "-rotate-45 -translate-y-1.5" : "translate-y-1"
               }`}
             />
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Panel */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        id="mobile-navigation"
+        className={`lg:hidden transition-all duration-300 ease-in-out border-b border-border-warm bg-warm-bg/98 backdrop-blur-md overflow-hidden ${
+          isOpen ? "max-h-[32rem] opacity-100 py-4" : "max-h-0 opacity-0 py-0"
         }`}
       >
-        <div className="bg-white/95 backdrop-blur-md border-t border-accent-light px-4 py-4 space-y-1">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-1">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={handleLinkClick}
-              className="block px-4 py-3 text-text-dark font-medium tracking-wide uppercase text-sm rounded-lg hover:bg-warm-bg-dark transition-colors duration-200"
-              style={{ fontFamily: "var(--font-lato), sans-serif" }}
+              className="block px-4 py-3 text-espresso font-medium text-base rounded-lg hover:bg-white/80 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               {link.label}
             </a>
           ))}
+          <div className="pt-3 border-t border-border-warm flex flex-col gap-2 px-4">
+            <a
+              href="#contact"
+              onClick={handleLinkClick}
+              className="text-center py-2.5 rounded-full border border-caramel text-espresso text-sm font-semibold hover:bg-caramel hover:text-white transition-colors"
+            >
+              Visit Us in Anand
+            </a>
+            <a
+              href="#portfolio-pitch"
+              onClick={handleLinkClick}
+              className="text-center py-2.5 rounded-full bg-primary text-white text-sm font-semibold hover:bg-primary-dark transition-colors shadow-sm"
+            >
+              Want a Website Like This?
+            </a>
+          </div>
         </div>
       </div>
-    </nav>
+    </header>
   );
 }
