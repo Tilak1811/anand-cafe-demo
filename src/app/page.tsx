@@ -4,6 +4,7 @@ import Menu from "@/components/Menu";
 import About from "@/components/About";
 import Gallery from "@/components/Gallery";
 import Contact from "@/components/Contact";
+import PitchSection from "@/components/PitchSection";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import DemoBanner from "@/components/DemoBanner";
@@ -19,6 +20,7 @@ export default function Home() {
         <About />
         <Gallery />
         <Contact />
+        <PitchSection />
       </main>
       <Footer />
       <WhatsAppButton />

@@ -112,3 +112,27 @@ export const GALLERY_IMAGES = [
     alt: "Sample barista preparing coffee",
   },
 ];
+
+// Developer Portfolio Pitch Constants
+export const DEVELOPER_WHATSAPP_NUMBER = "+918469181118";
+export const DEVELOPER_PHONE_DISPLAY = "+91 84691 81118";
+export const DEVELOPER_SERVICES = [
+  {
+    title: "Café Websites",
+    description:
+      "Modern digital menus, ambience galleries, location map integration, and direct WhatsApp ordering for customers.",
+    icon: "☕",
+  },
+  {
+    title: "Restaurant Websites",
+    description:
+      "Multi-course culinary showcases, chef specials, table query buttons, operating hours, and mobile-friendly directions.",
+    icon: "🍽️",
+  },
+  {
+    title: "Coaching-Class Websites",
+    description:
+      "Course curriculums, batch schedules, faculty profiles, fee structures, and quick student inquiry buttons.",
+    icon: "📚",
+  },
+];
